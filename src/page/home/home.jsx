@@ -53,6 +53,7 @@ export const Home = () => {
               Смартфоны и планшеты
             </h1>
           </div>
+
           <TavarBanner catigory={"phone"} dataPradackt={smartfonData} />
           <ToastContainer />
         </div>

@@ -24,48 +24,55 @@ export const PradactCart = ({
     dispatch(add({ img, title, ram, price, id }));
   };
   return (
-    <div
-      className="relative hover:transition duration-300   hover:scale-105 "
-      key={id}
-    >
-      <Link to={`product/${catigory}/${id}`}>
-        <div className="mt-6 p-1  w-[214px]">
-          <div className="flex justify-center  mb-4">
-            {discount && (
-              <p className="absolute  bg-vegan text-wayt rounded-sm top-2 left-2 pt-0.5 pb-0.5 pl-1 pr-1 text-base font-normal">
-                {discount}%
-              </p>
-            )}
-
-            <img className="w-40 h-40  flex-grow-1  " src={img} alt="img" />
-          </div>
-          <div className="h-[140px] flex pb-2 justify-between flex-col ">
-            <p className="max-w-[177px] text-base font-normal">{title}</p>
-            <div>
+    // pradackt cart :)
+    <div className="relative   w-[215px] h-[324px]  " key={id}>
+      <div className="mt-6 p-1  ">
+        <div className=" flex justify-center  ">
+          <Link to={`/product/${catigory}/${id}`}>
+            <div className="flex justify-center  mb-4">
               {discount && (
-                <p className="line-through mb-3">
-                  {(price * (100 - discount)) / 100} $
+                <p className=" absolute bg-vegan text-wayt rounded-sm top-2 left-2 pt-0.5 pb-0.5 pl-1 pr-1 text-base font-normal">
+                  {discount}%
                 </p>
               )}
-              <div>
-                <p className="text-lg font-semibold">{price} $</p>
-              </div>
+
+              <img
+                className="w-40 h-40  duration-300 hover:transition   hover:scale-110 flex-grow-1  "
+                src={img}
+                alt="img"
+              />
+            </div>
+          </Link>
+          <div className="  hover:text-vegan  cursor-pointer z-10 top-3 right-8">
+            <LikeCartIcon />
+          </div>
+        </div>
+
+        <div className="h-[140px] flex  justify-between flex-col ">
+          <p className="max-w-[177px] text-base font-normal">
+            {title.split("").length > 20 ? title.slice(0, 20) + "..." : title}
+          </p>
+          <div>
+            {discount && (
+              <p className="line-through mb-3">
+                {(price * (100 - discount)) / 100} $
+              </p>
+            )}
+            <div className=" flex  pr-4 justify-between">
+              <p className="text-lg font-semibold">{price} $</p>
+              <button
+                onClick={() => addproduc()}
+                className="bg-vegan  top-[300px] right-[30px] cursor-pointer hover:rounded-lg duration-200  p-[6px]"
+              >
+                <CartCarzinkaIcon />
+              </button>
             </div>
           </div>
         </div>
-      </Link>
+      </div>
+
       {/* like  && carzinka btn :) */}
-      <>
-        <button
-          onClick={() => addproduc()}
-          className="bg-vegan absolute top-[284px] right-[57px] cursor-pointer hover:rounded-lg duration-200  p-[6px]"
-        >
-          <CartCarzinkaIcon />
-        </button>
-        <div className="absolute  hover:text-vegan  cursor-pointer z-10 top-3 right-8">
-          <LikeCartIcon />
-        </div>
-      </>
+      <></>
     </div>
   );
 };

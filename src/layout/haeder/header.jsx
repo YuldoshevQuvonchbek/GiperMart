@@ -13,9 +13,9 @@ import { Link } from "react-router-dom";
 import useDebounce from "../../hook/useDebans";
 import { useGetALLdata } from "../../page/home/servese/query/useGetAlldata";
 import { RegesterModal } from "../../components/modal/regesterModal";
-import { request } from "../../config/request";
-import { saveState, loadState } from "../../config/store";
+import { loadState } from "../../config/store";
 import { Regester } from "./components/regester";
+import { ImUserCheck } from "react-icons/im";
 import { Login } from "./components/login";
 export const Header = () => {
   const [value, setValue] = React.useState("");
@@ -162,7 +162,7 @@ export const Header = () => {
               ""
             )}
           </div>
-
+          {/* user :) */}
           <div className="flex items-center  gap-8">
             <div className="items-center flex-col   flex  gap-1">
               {!user ? (
@@ -174,7 +174,9 @@ export const Header = () => {
                 </button>
               ) : (
                 <Link to={"/user"}>
-                  <h2> User</h2>
+                  <h2>
+                    <ImUserCheck />
+                  </h2>
                 </Link>
               )}
               <p className="text-base font-normal ">Войти</p>

@@ -3,10 +3,18 @@ import { useParams } from "react-router-dom";
 import { useGetALLPadact } from "../home/servese/query/useGetALLPadact";
 import { StarIcon } from "../../assets/icons/StarIcon";
 import { LikeIcon } from "../../assets/icons/LikeIcon";
-export const ShopPaje = () => {
-  const { id, category } = useParams();
+import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import { add } from "../../assets/redux/redusser/product-redusser";
 
+const ShopPaje = () => {
+  const { id, category } = useParams();
   const { data } = useGetALLPadact(category, id);
+  const dispatch = useDispatch();
+  const addproduc = () => {
+    toast.success("Success product");
+    dispatch(add(data));
+  };
 
   return (
     <div className="container">
@@ -97,6 +105,7 @@ export const ShopPaje = () => {
             </p>
           </div>
           {/* price :) */}
+          <ToastContainer />
           <div className=" w-full inline-block  max-w-[340px] ">
             <div className="border-2 border-[#EDEDED] p-3">
               <div className="flex mb-2 items-center justify-between">
@@ -112,7 +121,11 @@ export const ShopPaje = () => {
                 )}
               </div>
               <p className="mb-5   font-semibold text-4xl">{data?.price} $</p>
-              <button className="bg-vegan pt-3 pb-3 w-full text-wayt text-base  font-normal">
+
+              <button
+                onClick={() => addproduc()}
+                className="bg-vegan pt-3 pb-3 w-full text-wayt text-base  font-normal"
+              >
                 В корзину
               </button>
             </div>
@@ -120,6 +133,7 @@ export const ShopPaje = () => {
         </div>
       </div>
       <div>
+        {/* produc infi :) */}
         <h2 className=" text-2xl font-medium mb-9">Характеристики</h2>
         <div className="mb-12 flex items-center justify-between">
           <div className="max-w-[580px]">
@@ -181,3 +195,5 @@ export const ShopPaje = () => {
     </div>
   );
 };
+
+export default ShopPaje;

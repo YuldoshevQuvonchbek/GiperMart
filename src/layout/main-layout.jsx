@@ -3,7 +3,7 @@ import { Header } from "./haeder/header";
 import { Outlet } from "react-router-dom";
 import { Footer } from "./footer/footer";
 
-export const MainLayout = () => {
+const MainLayout = () => {
   return (
     <div className=" h-screen flex justify-between flex-col ">
       <div>
@@ -16,3 +16,4 @@ export const MainLayout = () => {
     </div>
   );
 };
+export default MainLayout;

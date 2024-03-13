@@ -1,8 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { CarzinCard } from "./card/carzinCard";
+import img from "../../assets/img/8c7a.gif";
 
-export const Carzinka = () => {
+const Carzinka = () => {
   const { products } = useSelector((state) => state.product);
   console.log(products);
   return (
@@ -30,11 +31,30 @@ export const Carzinka = () => {
         <h2 className="text-4xl font-medium mb-6">Корзина</h2>
 
         <div>
-          {products.map((item) => (
-            <CarzinCard key={item.id} {...item} />
-          ))}
+          {!products.length ? (
+            <div className=" flex relative justify-center">
+              <img
+                className=" w-[700px] h-auto object-cover"
+                src={img}
+                alt="img"
+              />
+
+              <h1 className=" absolute top-5 left-auto text-4xl text-[#999999e1] bg-transparent">
+                No product
+              </h1>
+            </div>
+          ) : (
+            <div>
+              {" "}
+              {products.map((item) => (
+                <CarzinCard key={item.id} {...item} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 };
+
+export default Carzinka;

@@ -1,5 +1,6 @@
 import React from "react";
 
-export const Dddres = () => {
+const Dddres = () => {
   return <div>Dddres</div>;
 };
+export default Dddres;

@@ -6,7 +6,6 @@ export const useGetALLPadact = (category, id) => {
     queryKey: ["ALL-category", category],
     queryFn: () =>
       request.get(`/${category.toLowerCase()}/${id}`).then((res) => {
-        console.log(res.data);
         return res.data;
       }),
   });

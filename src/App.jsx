@@ -1,30 +1,82 @@
 import { Route, Routes } from "react-router-dom";
-import { MainLayout } from "./layout/main-layout";
+import { Suspense, lazy } from "react";
 import { Home } from "./page/home/home";
-import { Product } from "./page/abaut/PradactInfo";
-import { ShopPaje } from "./page/Shop/ShopPaje";
-import { UserLeyaut } from "./layout/userLeyaut";
-import { Profile } from "./layout/user/profile";
-import { Dddres } from "./layout/user/addres";
 import { UseSkror } from "./hook/UseSkror";
-import { Carzinka } from "./page/carzinka/carzinka";
+const Carzinka = lazy(() => import("./page/carzinka/carzinka"));
+const Dddres = lazy(() => import("./layout/user/addres"));
+const Profile = lazy(() => import("./layout/user/profile"));
+const UserLeyaut = lazy(() => import("./layout/userLeyaut"));
+const ShopPaje = lazy(() => import("./page/Shop/ShopPaje"));
+const Product = lazy(() => import("./page/abaut/PradactInfo"));
+const MainLayout = lazy(() => import("./layout/main-layout"));
 
 function App() {
   return (
     <div>
       <UseSkror />
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Home />} />
-          <Route path="product/:category" element={<Product />} />
-          <Route path="product/:category/:id" element={<ShopPaje />} />
-          <Route path="carzinka" element={<Carzinka />} />
-          <Route path="user" element={<UserLeyaut />}>
-            <Route index element={<Profile />} />
-            <Route path="addres" element={<Dddres />} />
+      <Suspense fallback={<h1> loding...</h1>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense>
+                <MainLayout />
+              </Suspense>
+            }
+          >
+            <Route index element={<Home />} />
+            <Route
+              path="product/:category"
+              element={
+                <Suspense>
+                  <Product />
+                </Suspense>
+              }
+            />
+            <Route
+              path="product/:category/:id"
+              element={
+                <Suspense>
+                  <ShopPaje />
+                </Suspense>
+              }
+            />
+            <Route
+              path="carzinka"
+              element={
+                <Suspense>
+                  <Carzinka />
+                </Suspense>
+              }
+            />
+            <Route
+              path="user"
+              element={
+                <Suspense>
+                  <UserLeyaut />
+                </Suspense>
+              }
+            >
+              <Route
+                index
+                element={
+                  <Suspense>
+                    <Profile />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="addres"
+                element={
+                  <Suspense>
+                    <Dddres />
+                  </Suspense>
+                }
+              />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </Suspense>
     </div>
   );
 }
